@@ -1,0 +1,144 @@
+---
+# Define merge strategy as hash for all types
+lookup_options:
+  basic::augeas:
+    merge: hash
+  basic::computer:
+    merge: hash
+  basic::cron:
+    merge: hash
+  basic::exec:
+    merge: hash
+  basic::file:
+    merge: hash
+  basic::filebucket:
+    merge: hash
+  basic::group:
+    merge: hash
+  basic::host:
+    merge: hash
+  basic::interface:
+    merge: hash
+  basic::k5login:
+    merge: hash
+  basic::macauthorization:
+    merge: hash
+  basic::mailalias:
+    merge: hash
+  basic::maillist:
+    merge: hash
+  basic::mcx:
+    merge: hash
+  basic::mount:
+    merge: hash
+  basic::nagios_command:
+    merge: hash
+  basic::nagios_contact:
+    merge: hash
+  basic::nagios_contactgroup:
+    merge: hash
+  basic::nagios_host:
+    merge: hash
+  basic::nagios_hostdependency:
+    merge: hash
+  basic::nagios_hostescalation:
+    merge: hash
+  basic::nagios_hostextinfo:
+    merge: hash
+  basic::nagios_hostgroup:
+    merge: hash
+  basic::nagios_service:
+    merge: hash
+  basic::nagios_servicedependency:
+    merge: hash
+  basic::nagios_serviceescalation:
+    merge: hash
+  basic::nagios_serviceextinfo:
+    merge: hash
+  basic::nagios_servicegroup:
+    merge: hash
+  basic::nagios_timeperiod:
+    merge: hash
+  basic::package:
+    merge: hash
+  basic::resources:
+    merge: hash
+  basic::router:
+    merge: hash
+  basic::scheduled_task:
+    merge: hash
+  basic::seboolean:
+    merge: hash
+  basic::selmodule:
+    merge: hash
+  basic::service:
+    merge: hash
+  basic::ssh_authorized_key:
+    merge: hash
+  basic::sshkey:
+    merge: hash
+  basic::tidy:
+    merge: hash
+  basic::user:
+    merge: hash
+  basic::vlan:
+    merge: hash
+  basic::yumrepo:
+    merge: hash
+  basic::zfs:
+    merge: hash
+  basic::zone:
+    merge: hash
+  basic::zpool:
+    merge: hash
+  basic::file_line:
+    merge: hash
+
+# All types default to an empty hash
+basic::augeas: {}
+basic::computer: {}
+basic::cron: {}
+basic::exec: {}
+basic::file: {}
+basic::filebucket: {}
+basic::group: {}
+basic::host: {}
+basic::interface: {}
+basic::k5login: {}
+basic::macauthorization: {}
+basic::mailalias: {}
+basic::maillist: {}
+basic::mcx: {}
+basic::mount: {}
+basic::nagios_command: {}
+basic::nagios_contact: {}
+basic::nagios_contactgroup: {}
+basic::nagios_host: {}
+basic::nagios_hostdependency: {}
+basic::nagios_hostescalation: {}
+basic::nagios_hostextinfo: {}
+basic::nagios_hostgroup: {}
+basic::nagios_service: {}
+basic::nagios_servicedependency: {}
+basic::nagios_serviceescalation: {}
+basic::nagios_serviceextinfo: {}
+basic::nagios_servicegroup: {}
+basic::nagios_timeperiod: {}
+basic::package: {}
+basic::resources: {}
+basic::router: {}
+basic::scheduled_task: {}
+basic::seboolean: {}
+basic::selmodule: {}
+basic::service: {}
+basic::ssh_authorized_key: {}
+basic::sshkey: {}
+basic::tidy: {}
+basic::user: {}
+basic::vlan: {}
+basic::yumrepo: {}
+basic::zfs: {}
+basic::zone: {}
+basic::zpool: {}
+basic::file_line: {}
+
