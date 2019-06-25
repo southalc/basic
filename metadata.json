@@ -1,12 +1,12 @@
 {
   "name": "southalc-basic",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "southalc",
   "summary": "Manage native puppet types with hiera",
   "license": "Apache-2.0",
   "source": "https://github.com/southalc/basic",
   "project_page": "https://github.com/southalc/basic",
-  "issues_url": "https://github.com/southalc/basic",
+  "issues_url": "https://github.com/southalc/basic/issues",
   "dependencies": [
     {
       "name": "puppetlabs/stdlib",

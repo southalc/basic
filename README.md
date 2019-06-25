@@ -2,13 +2,17 @@
 
 1. [Description](#description)
 1. [Usage](#usage)
+1. [Types](#types)
+1. [Feedback](#feedback)
 1. [Development](#development)
 
 ## Description
 
 Enable management of many system components without dedicated puppet modules.
-This module includes all the puppet 5.5 types plus the 'file_line' from the
-stdlib module (except metaparameters 'notify', 'schedule', and 'stage').
+This module includes all the [puppet 5.5 types](https://puppet.com/docs/puppet/5.5/type.html)
+excluding metaparameters 'notify', 'schedule', and 'stage'.  There is also
+support for the ['file_line' type](https://forge.puppet.com/puppetlabs/stdlib/5.2.0/types#file_line)
+and the locally defined ['binary'](#types) type.
 
 All resource types are used as module parameters of the same name, and are
 initialized as empty hashes by default, with merge strategy set to hash to
@@ -87,7 +91,18 @@ simple::exec:
     subscribe: 'File[/etc/sysconfig/iptables]'
     refreshonly: true
 ```
+## Types
+
+The module now includes the 'binary' type that works just as a standard file.
+The only difference being that the 'content' of a binary type must be a base64
+encoded string.
+
+## Feedback
+
+Please use the [project wiki on github](https://github.com/southalc/basic/wiki) for feedback, questions, or to share your creative use of this module.
+
 ## Development
 
 This module is under lazy development and is unlikely to get much attention.
+That said, it's pretty simple and unlikely to need much upkeep.
 

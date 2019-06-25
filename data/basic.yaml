@@ -93,6 +93,8 @@ lookup_options:
     merge: hash
   basic::file_line:
     merge: hash
+  basic::binary:
+    merge: hash
 
 # All types default to an empty hash
 basic::augeas: {}
@@ -141,4 +143,5 @@ basic::zfs: {}
 basic::zone: {}
 basic::zpool: {}
 basic::file_line: {}
+basic::binary: {}
 

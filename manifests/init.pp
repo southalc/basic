@@ -1,10 +1,11 @@
 # Simple module uses hiera hashes with create_resources for many resource types.
 # Enables management of many system components without dedicated puppet modules.
 #
-# All puppet 5.5 types and file_line from the stdlib module are included except
-# the metaparameters 'notify', 'schedule', and 'stage'.
+# All puppet 5.5 types are included except metaparameters 'notify', 'schedule', and 'stage'
 # - https://puppet.com/docs/puppet/5.5/type.html
-# - https://forge.puppet.com/puppetlabs/stdlib
+#
+# The file_line type from the stdlib module is also included
+# - https://forge.puppet.com/puppetlabs/stdlib/5.2.0/types#file_line
 
 class basic (
   Hash $augeas,
@@ -53,9 +54,10 @@ class basic (
   Hash $zone,
   Hash $zpool,
   Hash $file_line,
+  Hash $binary,
 ) {
 
-  # Native puppet resources
+  # Native puppet types
   create_resources('Augeas',$augeas)
   create_resources('Computer',$computer)
   create_resources('Cron',$cron)
@@ -104,5 +106,12 @@ class basic (
 
   # Resources provided by modules
   create_resources('File_line',$file_line)
+
+  # locally defined types
+  keys($binary).each |String $key| {
+    Basic::Binary { $key:
+      file => $binary[$key],
+    }
+  }
 }
 
