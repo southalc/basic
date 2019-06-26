@@ -8,24 +8,15 @@
 
 ## Description
 
-Enable management of many system components without dedicated puppet modules.
-This module includes all the [puppet 5.5 types](https://puppet.com/docs/puppet/5.5/type.html)
-excluding metaparameters 'notify', 'schedule', and 'stage'.  There is also
-support for the ['file_line' type](https://forge.puppet.com/puppetlabs/stdlib/5.2.0/types#file_line)
-and the locally defined ['binary'](#types) type.
+This module enables management of many system components by providing a basic implementation of all the [puppet 5.5 types](https://puppet.com/docs/puppet/5.5/type.html) excluding metaparameters 'notify', 'schedule', and 'stage'.  The ['file_line' type](https://forge.puppet.com/puppetlabs/stdlib/5.2.0/types#file_line) from puppetlabs/stdlib is also supported, along with the locally defined ['binary'](#types) type.
 
-All resource types are used as module parameters of the same name, and are
-initialized as empty hashes by default, with merge strategy set to hash to
-be extensible and easy to override in hiera.
+All resource types are used as module parameters of the same name, and are initialized as empty hashes by default, with merge strategy set to hash to be extensible and easy to override in hiera.
 
 ## Usage
 
-Define resources in hiera.  Many puppet modules only perform simple tasks like
-installing packages, configuring files, and starting services.  Here is an
-example to show how this single module can replace many single-purpose modules.
+Simply define resources in hiera - when no resources are defined the module does nothing.  Many puppet modules only perform simple tasks to manipulate packages, files, and services, so it's quite possible to replace many modules by using this approach.  Even when other modules are used, it's convenient to include this module for the flexibility of creating arbitrary resources of so many types.
 
-Example - This demonstrates installation of a package, configuration of a
-service, and ordering of resources with 'require' and 'notify' metaparameters.
+Example - This demonstrates installation of a package, configuration of a service, and ordering of resources with 'require' and 'notify' metaparameters.
 ```
 basic::package:
   nscd:
@@ -64,8 +55,7 @@ basic::service:
     require:
       - 'Package[nscd]'
 ```
-Example - This demonstrates use of an exec resource for reloading iptables
-when the subscribed resource file is updated.
+Example - This demonstrates use of an exec resource for reloading iptables when the subscribed resource file is updated.
 ```
 basic::file:
   /etc/sysconfig/iptables:

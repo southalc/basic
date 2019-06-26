@@ -108,10 +108,8 @@ class basic (
   create_resources('File_line',$file_line)
 
   # locally defined types
-  keys($binary).each |String $key| {
-    Basic::Binary { $key:
-      file => $binary[$key],
-    }
+  Basic::Binary { keys($binary):
+    properties => $binary,
   }
 }
 
