@@ -59,11 +59,15 @@ lookup_options:
     merge: hash
   basic::nagios_timeperiod:
     merge: hash
+  basic::notifications:
+    merge: hash
   basic::package:
     merge: hash
   basic::resources:
     merge: hash
   basic::router:
+    merge: hash
+  basic::schedules:
     merge: hash
   basic::scheduled_task:
     merge: hash
@@ -76,6 +80,8 @@ lookup_options:
   basic::ssh_authorized_key:
     merge: hash
   basic::sshkey:
+    merge: hash
+  basic::stages:
     merge: hash
   basic::tidy:
     merge: hash
@@ -92,6 +98,8 @@ lookup_options:
   basic::zpool:
     merge: hash
   basic::file_line:
+    merge: hash
+  basic::archive:
     merge: hash
   basic::binary:
     merge: hash
@@ -126,15 +134,18 @@ basic::nagios_serviceescalation: {}
 basic::nagios_serviceextinfo: {}
 basic::nagios_servicegroup: {}
 basic::nagios_timeperiod: {}
+basic::notifications: {}
 basic::package: {}
 basic::resources: {}
 basic::router: {}
+basic::schedules: {}
 basic::scheduled_task: {}
 basic::seboolean: {}
 basic::selmodule: {}
 basic::service: {}
 basic::ssh_authorized_key: {}
 basic::sshkey: {}
+basic::stages: {}
 basic::tidy: {}
 basic::user: {}
 basic::vlan: {}
@@ -143,5 +154,6 @@ basic::zfs: {}
 basic::zone: {}
 basic::zpool: {}
 basic::file_line: {}
+basic::archive: {}
 basic::binary: {}
 

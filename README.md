@@ -8,15 +8,32 @@
 
 ## Description
 
-This module enables management of many system components by providing a basic implementation of all the [puppet 5.5 types](https://puppet.com/docs/puppet/5.5/type.html) excluding metaparameters 'notify', 'schedule', and 'stage'.  The ['file_line' type](https://forge.puppet.com/puppetlabs/stdlib/5.2.0/types#file_line) from puppetlabs/stdlib is also supported, along with the locally defined ['binary'](#types) type.
+Enable management of many system components without dedicated puppet modules.
+This module supports all the [native puppet 5.5 types](https://puppet.com/docs/puppet/5.5/type.html),
+the ['file_line' type](https://forge.puppet.com/puppetlabs/stdlib/5.2.0/types#file_line)
+from puppetlabs/stdlib, the ['archive'](https://forge.puppet.com/puppet/archive#archive)
+type from puppet/archive, and the local defined type ['binary'](#types).
 
-All resource types are used as module parameters of the same name, and are initialized as empty hashes by default, with merge strategy set to hash to be extensible and easy to override in hiera.
+All resource types are used as module parameters of the same name with exceptions
+for the metaparameters 'notify', 'schedule', and 'stage'.  The module parameters
+for these types are:
+* $notifications  =  notify
+* $schedules      =  schedule
+* $stages         =  stage
+
+All module parameters are initialized as empty hashes by default, with merge
+strategy set to hash to be easily managed with hiera.  Resources are created
+as defined by the merged hiera hash for the module parameters.
 
 ## Usage
 
-Simply define resources in hiera - when no resources are defined the module does nothing.  Many puppet modules only perform simple tasks to manipulate packages, files, and services, so it's quite possible to replace many modules by using this approach.  Even when other modules are used, it's convenient to include this module for the flexibility of creating arbitrary resources of so many types.
+Define resources in hiera.  Many puppet modules only perform simple tasks like
+installing packages, configuring files, and starting services.  Since this module
+can do all these things and more, it's possible to replace the functionality of
+many modules by using this one and defining resources in hiera.
 
-Example - This demonstrates installation of a package, configuration of a service, and ordering of resources with 'require' and 'notify' metaparameters.
+Example - This demonstrates installation of a package, configuration of a
+service, and ordering of resources with 'require' and 'notify' metaparameters.
 ```
 basic::package:
   nscd:
@@ -55,7 +72,8 @@ basic::service:
     require:
       - 'Package[nscd]'
 ```
-Example - This demonstrates use of an exec resource for reloading iptables when the subscribed resource file is updated.
+Example - This demonstrates use of an exec resource for reloading iptables
+when the subscribed resource file is updated.
 ```
 basic::file:
   /etc/sysconfig/iptables:
@@ -74,7 +92,7 @@ basic::file:
       -A INPUT -p tcp -m state --state NEW -m tcp --dport 22 -j ACCEPT
       COMMIT
 
-simple::exec:
+basic::exec:
   iptables_restore:
     path: '/sbin:/usr/sbin:/bin:/usr/bin'
     command: 'iptables-restore /etc/sysconfig/iptables'
@@ -83,9 +101,9 @@ simple::exec:
 ```
 ## Types
 
-The module now includes the 'binary' type that works just as a standard file.
-The only difference being that the 'content' of a binary type must be a base64
-encoded string.
+The 'binary' defined type works like the standard 'file' type and uses all the
+same parameters.  The only difference is that the 'content' attribute of a binary
+type should be a base64 encoded string.
 
 ## Feedback
 

@@ -1,6 +1,16 @@
 # basic
 basic puppet module for managing many defined types
 
+## [0.3.0] - 2019-06-29
+### Added
+- Support for 'archive' type as provided by puppet/archive
+- Added support for 'notify', 'stage', and 'schedule' types using module
+parameters 'notifications', 'stages', and 'schedules', respectively.
+
+## [0.2.1] - 2019-06-26
+### Documentation
+- Corrected hiera data in the README example for the iptables_restore resource
+
 ## [0.2.0] - 2019-06-24
 ### Added
 - New type 'binary' for creating binary files from base64 encoded data

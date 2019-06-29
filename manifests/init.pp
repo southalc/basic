@@ -1,11 +1,18 @@
 # Simple module uses hiera hashes with create_resources for many resource types.
 # Enables management of many system components without dedicated puppet modules.
 #
-# All puppet 5.5 types are included except metaparameters 'notify', 'schedule', and 'stage'
-# - https://puppet.com/docs/puppet/5.5/type.html
+# All the native puppet 5.5 types, 'file_line' from puppetlabs/stdlib, and 'archive'
+# from puppet/archive are included.  The module parameters for native types 'notify',
+# 'schedule', and 'stage' are renamed to avoid conflict with their use as metaparamenters,
+# and instead use the parameter names: 'notifications', 'schedules', and 'stages'.
 #
-# The file_line type from the stdlib module is also included
-# - https://forge.puppet.com/puppetlabs/stdlib/5.2.0/types#file_line
+# - https://puppet.com/docs/puppet/5.5/type.html
+# - https://forge.puppet.com/puppetlabs/stdlib
+# - https://forge.puppet.com/puppet/archive#archive
+#
+# The local 'binary' type allows binary files to be created using the same type
+# attributes as 'file', with the difference being that the 'content' must be a
+# base64 encoded string.
 
 class basic (
   Hash $augeas,
@@ -37,15 +44,18 @@ class basic (
   Hash $nagios_serviceextinfo,
   Hash $nagios_servicegroup,
   Hash $nagios_timeperiod,
+  Hash $notifications,
   Hash $package,
   Hash $resources,
   Hash $router,
+  Hash $schedules,
   Hash $scheduled_task,
   Hash $seboolean,
   Hash $selmodule,
   Hash $service,
   Hash $ssh_authorized_key,
   Hash $sshkey,
+  Hash $stages,
   Hash $tidy,
   Hash $user,
   Hash $vlan,
@@ -54,10 +64,11 @@ class basic (
   Hash $zone,
   Hash $zpool,
   Hash $file_line,
+  Hash $archive,
   Hash $binary,
 ) {
 
-  # Native puppet types
+  # Native puppet resources
   create_resources('Augeas',$augeas)
   create_resources('Computer',$computer)
   create_resources('Cron',$cron)
@@ -87,15 +98,18 @@ class basic (
   create_resources('Nagios_serviceextinfo',$nagios_serviceextinfo)
   create_resources('Nagios_servicegroup',$nagios_servicegroup)
   create_resources('Nagios_timeperiod',$nagios_timeperiod)
+  create_resources('Notify',$notifications)
   create_resources('Package',$package)
   create_resources('Resources',$resources)
   create_resources('Router',$router)
+  create_resources('Schedule',$schedules)
   create_resources('Scheduled_task',$scheduled_task)
   create_resources('Seboolean',$seboolean)
   create_resources('Selmodule',$selmodule)
   create_resources('Service',$service)
   create_resources('Ssh_authorized_key',$ssh_authorized_key)
   create_resources('Sshkey',$sshkey)
+  create_resources('Stage',$stages)
   create_resources('Tidy',$tidy)
   create_resources('User',$user)
   create_resources('Vlan',$vlan)
@@ -106,10 +120,12 @@ class basic (
 
   # Resources provided by modules
   create_resources('File_line',$file_line)
+  create_resources('Archive',$archive)
 
   # locally defined types
   Basic::Binary { keys($binary):
     properties => $binary,
   }
+
 }
 
