@@ -11,8 +11,8 @@
 Enable management of many system components without dedicated puppet modules.
 This module supports all the [native puppet 5.5 types](https://puppet.com/docs/puppet/5.5/type.html),
 the ['file_line' type](https://forge.puppet.com/puppetlabs/stdlib/5.2.0/types#file_line)
-from puppetlabs/stdlib, the ['archive'](https://forge.puppet.com/puppet/archive#archive)
-type from puppet/archive, and the local defined type ['binary'](#types).
+from puppetlabs/stdlib, the ['archive type'](https://forge.puppet.com/puppet/archive#archive)
+from puppet/archive, and the local defined type ['binary'](#types).
 
 All resource types are used as module parameters of the same name with exceptions
 for the metaparameters 'notify', 'schedule', and 'stage'.  The module parameters
@@ -32,8 +32,14 @@ installing packages, configuring files, and starting services.  Since this modul
 can do all these things and more, it's possible to replace the functionality of
 many modules by using this one and defining resources in hiera.
 
-Example - This demonstrates installation of a package, configuration of a
-service, and ordering of resources with 'require' and 'notify' metaparameters.
+Use [relationship metaparameters](https://puppet.com/docs/puppet/6.6/lang_relationships.html#reference-2871)
+to order resource dependencies.  A typical application will have 'package', 'file',
+and 'service' resources, and the logical order would have the file resource 'require'
+the package and the and service resource 'subscribe' to the file.
+
+Example - This deployment of the name service caching daemon demonstrates installation
+of a package, configuration of a file, and a refresh of the service when the configuration
+file chagnes.
 ```
 basic::package:
   nscd:
@@ -47,15 +53,13 @@ basic::file:
     mode: '600'
     require:
       - 'Package[nscd]'
-    notify:
-      - 'Service[nscd]'
     content: |
       ## FILE MANAGED BY PUPPET - LOCAL CHANGES WILL NOT PERSIST
         logfile                /var/log/nscd.log
         server-user            nscd
         debug-level            0
         paranoia               no
-      
+        
         enable-cache           hosts           yes
         positive-time-to-live  hosts           3600
         negative-time-to-live  hosts           20
@@ -69,8 +73,8 @@ basic::service:
   nscd:
     ensure: 'running'
     enable: true
-    require:
-      - 'Package[nscd]'
+    subscribe:
+      - 'File[/etc/nscd.conf]'
 ```
 Example - This demonstrates use of an exec resource for reloading iptables
 when the subscribed resource file is updated.

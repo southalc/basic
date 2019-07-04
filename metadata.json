@@ -2,7 +2,7 @@
   "name": "southalc-basic",
   "version": "0.3.0",
   "author": "southalc",
-  "summary": "Manage native puppet types with hiera",
+  "summary": "Manage many puppet resource types with hiera",
   "license": "Apache-2.0",
   "source": "https://github.com/southalc/basic",
   "project_page": "https://github.com/southalc/basic",
