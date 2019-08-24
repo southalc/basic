@@ -1,6 +1,11 @@
 # basic
 basic puppet module for managing many defined types
 
+## [0.4.0] - 2019-08-23
+### Rewrite
+- New 'basic::type' defined type replaces the legacy 'create_resources()' with
+iteration and abstract resource types.
+
 ## [0.3.0] - 2019-06-29
 ### Added
 - Support for 'archive' type as provided by puppet/archive
