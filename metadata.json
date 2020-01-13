@@ -1,8 +1,8 @@
 {
   "name": "southalc-basic",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "author": "southalc",
-  "summary": "Manage many resource types with hiera hashes",
+  "summary": "DEPRECATED: 'types' module manages ALL types with hiera hashes",
   "license": "Apache-2.0",
   "source": "https://github.com/southalc/basic",
   "project_page": "https://github.com/southalc/basic",
@@ -10,7 +10,7 @@
   "dependencies": [
     {
       "name": "puppetlabs/stdlib",
-      "version_requirement": ">= 4.1.0 <= 5.2.0"
+      "version_requirement": ">= 4.1.0 <= 6.1.0"
     },
     {
       "name": "puppet/archive",
@@ -69,7 +69,7 @@
       "version_requirement": ">= 4.10.0 < 7.0.0"
     }
   ],
-  "pdk-version": "1.8.0",
-  "template-url": "file:///opt/puppetlabs/pdk/share/cache/pdk-templates.git",
-  "template-ref": "1.8.0-0-g0d9da00"
+  "pdk-version": "1.14.1",
+  "template-url": "pdk-default#1.14.1",
+  "template-ref": "1.14.1-0-g0b5b39b"
 }

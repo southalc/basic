@@ -1,10 +1,19 @@
 #### Table of Contents
 
+1. [Deprecation](#deprecation notice)
 1. [Description](#description)
 1. [Usage](#usage)
 1. [Types](#types)
 1. [Feedback](#feedback)
 1. [Development](#development)
+
+## Deprecation Notice
+
+The [types module](https://forge.puppet.com/southalc/types) includes all the
+functionality from this module and expands it with the ability to manage ALL
+types from ANY module in the environment using hiera hashes.  This module is
+therefore considered obsolete and deprecated in favor of
+[types](https://forge.puppet.com/southalc/types).
 
 ## Description
 

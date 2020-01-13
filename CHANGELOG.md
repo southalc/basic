@@ -1,6 +1,10 @@
 # basic
 basic puppet module for managing many defined types
 
+## [Deprecated] - 2020-01-12
+
+- Functionality roled in to the new and more flexible 'types' module
+
 ## [0.4.0] - 2019-08-23
 ### Rewrite
 - New 'basic::type' defined type replaces the legacy 'create_resources()' with
